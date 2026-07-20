@@ -1,0 +1,81 @@
+---
+title: Split Text Effect
+date: 2025-01-04
+description: A split text effect for your website
+author: bucharitesh
+published: true
+type: "component"
+theme: "light"
+video: "https://cdn.bucharitesh.in/split-text-effect.mp4"
+image: "https://cdn.bucharitesh.in/split-text-effect.png"
+aspect_ratio: 1.77
+---
+
+<ComponentPreview name="split-text-effect-demo" openInV0Url />
+
+## Installation
+
+<CodeTabs className="gap-0">
+
+<TabsListInstallType />
+
+<TabsContent value="bucharitesh-cli" className="[&>figure]:mb-0">
+
+```bash
+npx @bucharitesh/cli@latest add split-text-effect
+```
+
+</TabsContent>
+
+<TabsContent value="shadcn-cli" className="[&>figure]:mb-0">
+
+```bash
+npx shadcn add @bucharitesh/split-text-effect
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+{/* <CodeBlock filePath='./components/core/split-text-effect/index.tsx' /> */}
+
+<ComponentSource 
+  name="split-text-effect" 
+  title="components/split-text-effect.tsx"
+  showLineNumbers 
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Examples
+
+### Example 1
+
+<ComponentPreview name="split-text-effect-demo-2" openInV0Url />
+
+### Example 2
+
+<ComponentPreview name="split-text-effect-demo-3" openInV0Url />
+
+## Props
+
+| Prop      | Type   | Description                                                    | Default                                          |
+| --------- | ------ | -------------------------------------------------------------- | ------------------------------------------------ |
+| text      | string | React.ReactNode                                                | The text or React node to be displayed and split |
+| fill      | number | The initial fill amount (between 0 and 1) for the split effect | 0.5                                              |
+| accent    | string | The accent color used for the split effect and borders         | "#006efe"                                        |
+| className | object | Additional CSS classes to apply to the container               |                                                  |
+
+## Credits
+
+- Credits to [@rauno](https://rauno.me) for the [Split Text Effect](https://vercel.com/security)
