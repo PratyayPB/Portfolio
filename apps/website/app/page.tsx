@@ -39,7 +39,7 @@ export default async function Page() {
       <JsonLd code={jsonLd} />
       <Info show={['time', 'screen']} />
       <ScrollArea useScrollAreaId className="">
-        <FloatingHeader scrollTitle="Ritesh Bucha" />
+        <FloatingHeader scrollTitle="Pratyay Pratim Borah" />
         <div className="layout relative z-10 content-wrapper mb-10">
           <header className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
             <ProfileImage />
