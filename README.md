@@ -1,14 +1,4 @@
-# [bucharitesh.in](https://bucharitesh.in)
-
 A minimal portfolio, component registry to showcase my work.
-
-Check out the live site: [bucharitesh.in](https://bucharitesh.in?ref=github)
-
-## GitAds Sponsored
-
-[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=bucharitesh/bucharitesh.in@github)](https://gitads.dev/v1/ad-track?source=bucharitesh/bucharitesh.in@github)
-
-<!-- GitAds-Verify: DIY18X7KPF4S8175ESJPKIUYLPAEUGXI -->
 
 ## Overview
 
@@ -23,29 +13,7 @@ Check out the live site: [bucharitesh.in](https://bucharitesh.in?ref=github)
 - Clean & modern design
 - Light & Dark theme support
 - vCard integration
-- SEO optimization: [JSON-LD schema](https://json-ld.org), sitemap, robots
-- AI-friendly [/llms.txt](https://llmstxt.org)
-- Spam-protected email
-- Installable PWA
 
-### Blog
-
-- MDX & Markdown support
-- Access markdown by adding `.mdx` to URLs, e.g. `/blog/welcome.mdx`
-- Syntax Highlighting for better readability
-- RSS Feed for easy content distribution
-- Dynamic OG Images for rich previews
-
-### Component Registry
-
-Easily build and distribute your own components, hooks, and pages using a custom registry powered by the [shadcn CLI](https://ui.shadcn.com/docs/cli).
-
-Each component is well-documented through the Blog, featuring:
-
-- **Live Preview**: Interactive component demos
-- **Code Snippets**: Readable and copyable examples
-- **Beautiful Code Blocks**: Styled for clarity and dark mode
-- **Command Blocks**: One-click copy for quick install commands (`pnpm`, `npm`, `yarn`, `bun`)
 
 ## Development
 
