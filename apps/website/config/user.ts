@@ -62,7 +62,8 @@ const USER: User = {
   image: {
     profile: "https://ik.imagekit.io/ulycoljug/image_fd9b8bf3.jpg",
     profileDark: "https://ik.imagekit.io/ulycoljug/image_fd9b8bf3.jpg",
-    profileLight: "https://ik.imagekit.io/ulycoljug/28204ca4-d313-4b59-b761-f573cc1c599e.png",
+    profileLight:
+      "https://ik.imagekit.io/ulycoljug/28204ca4-d313-4b59-b761-f573cc1c599e.png",
   },
   experiences: experiences,
   education: education,

@@ -17,7 +17,6 @@
   overflow: hidden;
   height: 100%;
   min-height: 100%;
-  background-color: var(--background, #ffffff);
 }
 
 .ascii-center {
@@ -29,17 +28,22 @@
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: thin; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
-  background-color: var(--background, #ffffff);
+  background-color: #f7f7f7;
   /* border-left: 1px solid var(--border, rgb(0 0 0 / 10%));
   border-right: 1px solid var(--border, rgb(0 0 0 / 10%)); */
   box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.1);
   z-index: 10;
 }
 
+.dark .ascii-center,
+.dark #main-content {
+  background-color: var(--background, #09090b);
+}
+
 .ascii-center::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: block; /* Chrome, Safari, Opera */
 }
 
 /* Tablet (1024px and below) */

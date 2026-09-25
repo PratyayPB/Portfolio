@@ -1,7 +1,7 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
-import { getContributions } from '@/features/home/data/graph';
-import { GitHubContributionFallback, GitHubContributionGraph } from './graph';
+import { getContributions } from "@/features/home/data/graph";
+import { GitHubContributionFallback, GitHubContributionGraph } from "./graph";
 
 export function GitHubContribution() {
   const contributions = getContributions();

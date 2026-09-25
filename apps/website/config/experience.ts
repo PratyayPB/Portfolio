@@ -18,6 +18,8 @@ export type ExperiencePosition = {
   /** Full-time | Part-time | Contract | Internship, etc. */
   employmentType?: string;
   description?: string;
+  /** Key achievements and responsibilities displayed as bullet points in the dropdown. */
+  points?: string[];
   /** UI icon to represent the role type. */
   icon?: ExperiencePositionIcon;
   skills?: string[];
@@ -41,7 +43,7 @@ export type Experience = {
 export const experiences: Experience[] = [
   {
     id: "codemate",
-    companyName: "Codemate",
+    companyName: "CodeMate Club",
     companyUrl: "https://codematenehu.tech",
     city: "Shillong",
     companyLogo: "https://ik.imagekit.io/ulycoljug/CM_Logo1_noBg.png",
@@ -54,6 +56,11 @@ export const experiences: Experience[] = [
           start: "March 2026",
           end: "Present",
         },
+        points: [
+          "Built an internal LLM evaluation dashboard using Promptfoo, enabling prompt engineers to test model outputs against real user queries",
+          "Designed an agent-driven prompt optimization pipeline that auto-improves and versions prompts based on evaluation scores",
+          "Implemented a Stripe-backed credit ledger system for auditability, tracking deposits, cancellations, and usage-based deductions",
+        ],
       },
     ],
     isCurrentEmployer: true,

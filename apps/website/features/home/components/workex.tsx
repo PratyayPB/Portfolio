@@ -41,7 +41,10 @@ export function WorkEx() {
           const primaryPosition = exp.positions[0];
           const hasMultiplePositions = exp.positions.length > 1;
           const hasDetails = exp.positions.some(
-            (p) => Boolean(p.description) || (p.skills && p.skills.length > 0),
+            (p) =>
+              Boolean(p.description) ||
+              (p.skills && p.skills.length > 0) ||
+              (p.points && p.points.length > 0),
           );
 
           return (
@@ -150,6 +153,25 @@ export function WorkEx() {
                               {pos.employmentPeriod.end ?? "Present"}
                             </span>
                           </div>
+                        )}
+
+                        {pos.points && pos.points.length > 0 && (
+                          <ul className="space-y-3 pt-1 text-sm text-neutral-700 dark:text-neutral-300">
+                            {pos.points.map((point, i) => (
+                              <li
+                                key={i}
+                                className="flex items-start gap-2.5 leading-relaxed"
+                              >
+                                <span
+                                  className="mt-2 size-1.5 shrink-0 rounded-full bg-neutral-400 dark:bg-neutral-400"
+                                  aria-hidden="true"
+                                />
+                                <span className="flex-1 leading-relaxed">
+                                  {point}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
                         )}
 
                         {pos.description && (

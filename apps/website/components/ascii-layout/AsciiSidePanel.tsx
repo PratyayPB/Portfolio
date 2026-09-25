@@ -28,11 +28,11 @@ export function AsciiSidePanel({
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const { resolvedTheme } = useTheme();
 
-  // Match glyph color to the center content's text color:
-  // Light mode: dark text (#09090b / zinc-950)
-  // Dark mode: light text (#fafafa / zinc-50)
+  // Invert colors based on theme:
+  // Dark mode: dark background (#09090b / zinc-950) with light glyphs (#fafafa)
+  // Light mode: white background (#ffffff) with dark glyphs (#000000)
   const isDark = resolvedTheme === "dark";
-  const effectiveGlyphColor = accentColor ?? (isDark ? "#fafafa" : "#09090b");
+  const effectiveGlyphColor = accentColor ?? (isDark ? "#fafafa" : "#000000");
 
   React.useEffect(() => {
     const host = containerRef.current;
@@ -65,10 +65,10 @@ export function AsciiSidePanel({
       charset: " .:+-=xICA$FY#@",
       colorMode: "accent" as const,
       accentColor: effectiveGlyphColor,
-      contrast: 0.08,
+      contrast: isDark ? 0.08 : 1.2,
+      brightness: isDark ? 0 : 0.5,
       hoverStrength: 0,
     };
-
 
     const isResting = () => reduced.matches || document.hidden || !visible;
 
@@ -93,7 +93,7 @@ export function AsciiSidePanel({
           aspect,
           time,
           field,
-          patternScale
+          patternScale,
         );
         sourceCtx.putImageData(pixels, 0, 0);
 
@@ -109,7 +109,6 @@ export function AsciiSidePanel({
           null,
         );
       }
-
 
       if (!isResting()) {
         raf = requestAnimationFrame(tick);
@@ -213,21 +212,20 @@ export function AsciiSidePanel({
       host.removeEventListener("pointerleave", handlePointerLeave);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [side, fontSize, effectiveGlyphColor, patternScale]);
+  }, [side, fontSize, effectiveGlyphColor, patternScale, isDark]);
 
   return (
     <div
       ref={containerRef}
-      className={`ascii-side relative h-full w-full overflow-hidden bg-background select-none ${className}`}
+      className={`ascii-side relative h-full w-full overflow-hidden bg-white dark:bg-zinc-950 select-none ${className}`}
       aria-hidden="true"
     >
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 size-full pointer-events-none opacity-60 dark:opacity-60"
+        className="absolute inset-0 size-full pointer-events-none opacity-80 dark:opacity-60"
       />
     </div>
   );
 }
-
 
 export default AsciiSidePanel;

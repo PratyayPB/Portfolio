@@ -26,8 +26,8 @@ export const DockConfig = {
       },
       resume: {
         name: "Resume",
-        url: "#", //resume host
-        icon: Icons.email, //resume icon here
+        url: USER.social.resume ?? "#",
+        icon: Icons.resume,
       },
     },
   },

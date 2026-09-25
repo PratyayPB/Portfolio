@@ -16,6 +16,7 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { memo, useState } from 'react';
+import ModeToggle from './dock/mode-toggle';
 
 export function MobileDrawer() {
   const [open, setOpen] = useState(false);
@@ -100,6 +101,13 @@ export function MobileDrawer() {
                 ))}
               </div>
             </div>
+            <hr className="border-neutral-200 dark:border-neutral-800" />
+            <div className="flex items-center justify-between px-2 py-1">
+              <span className="font-medium text-sm text-foreground">Appearance</span>
+              <div className="flex size-10 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800">
+                <ModeToggle />
+              </div>
+            </div>
           </div>
         </div>
       </DrawerContent>
@@ -119,7 +127,7 @@ export const NavigationLink = memo(({ href, label, icon, onClose }: any) => {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-between gap-2 rounded-lg p-2 hover:bg-gray-200 dark:hover:bg-gray-800"
+        className="flex min-h-[44px] items-center justify-between gap-2 rounded-lg p-2.5 hover:bg-gray-200 dark:hover:bg-gray-800"
         onClick={onClose}
       >
         <span className="inline-flex items-center gap-2 font-medium">
@@ -143,7 +151,7 @@ export const NavigationLink = memo(({ href, label, icon, onClose }: any) => {
       key={href}
       href={href}
       className={cn(
-        'group flex items-center justify-between rounded-lg p-2',
+        'group flex min-h-[44px] items-center justify-between rounded-lg p-2.5',
         isActive
           ? 'bg-black text-white dark:bg-neutral-800'
           : 'hover:bg-neutral-200 dark:hover:bg-neutral-800'

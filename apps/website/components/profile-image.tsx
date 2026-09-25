@@ -35,7 +35,7 @@ export const ProfileImage = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
-        "relative size-[160px] sm:size-[160px] border-r-1 border-black dark:border-white",
+        "relative size-[160px] sm:size-[160px] border-b sm:border-b-0 sm:border-r border-black dark:border-white",
         className,
       )}
     >

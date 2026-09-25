@@ -14,7 +14,15 @@ export class FluidField implements PointerField {
   readonly rows: number;
   private front: Float32Array;
   private back: Float32Array;
-  private strokes: { x: number; y: number; dx: number; dy: number; speed: number; fromX: number; fromY: number }[] = [];
+  private strokes: {
+    x: number;
+    y: number;
+    dx: number;
+    dy: number;
+    speed: number;
+    fromX: number;
+    fromY: number;
+  }[] = [];
   private readonly advected = [0, 0, 0];
   private previous: { x: number; y: number } | null = null;
   private energy = 0;
@@ -27,8 +35,10 @@ export class FluidField implements PointerField {
     this.decayRate = decayRate;
     this.aspect = Math.max(0.25, Math.min(4, aspect));
     const resolution = continuousWake ? 96 : 64;
-    this.columns = this.aspect >= 1 ? resolution : Math.round(resolution * this.aspect);
-    this.rows = this.aspect >= 1 ? Math.round(resolution / this.aspect) : resolution;
+    this.columns =
+      this.aspect >= 1 ? resolution : Math.round(resolution * this.aspect);
+    this.rows =
+      this.aspect >= 1 ? Math.round(resolution / this.aspect) : resolution;
     this.front = new Float32Array(this.columns * this.rows * 3);
     this.back = new Float32Array(this.front.length);
   }
@@ -49,7 +59,15 @@ export class FluidField implements PointerField {
     this.previous = { x, y };
     if (Math.abs(dx) + Math.abs(dy) < 0.0001) return;
     const speed = Math.min(1, Math.hypot(dx * this.aspect, dy) * 25 + 0.06);
-    this.strokes.push({ x, y, dx, dy, speed, fromX: previous.x, fromY: previous.y });
+    this.strokes.push({
+      x,
+      y,
+      dx,
+      dy,
+      speed,
+      fromX: previous.x,
+      fromY: previous.y,
+    });
     if (this.strokes.length > 12) this.strokes.shift();
   }
 
@@ -66,7 +84,10 @@ export class FluidField implements PointerField {
   }
 
   private read(data: Float32Array, x: number, y: number, out: number[]) {
-    const gx = Math.max(0, Math.min(this.columns - 1.001, x * (this.columns - 1)));
+    const gx = Math.max(
+      0,
+      Math.min(this.columns - 1.001, x * (this.columns - 1)),
+    );
     const gy = Math.max(0, Math.min(this.rows - 1.001, y * (this.rows - 1)));
     const ix = Math.floor(gx);
     const iy = Math.floor(gy);
@@ -122,7 +143,10 @@ export class FluidField implements PointerField {
             const ay = (v - stroke.fromY) * yScale;
             const bx = (stroke.x - stroke.fromX) * xScale;
             const by = (stroke.y - stroke.fromY) * yScale;
-            const along = Math.max(0, Math.min(1, (ax * bx + ay * by) / (bx * bx + by * by || 1)));
+            const along = Math.max(
+              0,
+              Math.min(1, (ax * bx + ay * by) / (bx * bx + by * by || 1)),
+            );
             rx = ax - bx * along;
             ry = ay - by * along;
             const distance = rx * rx + ry * ry;
@@ -166,7 +190,8 @@ export function paintLiquidSource(
   aspect: number,
   time: number,
   flow: PointerField,
-  patternScale = 2.5
+  patternScale = 2.5,
+  intensity = 1,
 ) {
   const field = [0, 0, 0];
   const moving = flow.active;
@@ -184,12 +209,22 @@ export function paintLiquidSource(
       const px = (u - 0.5 - field[0]) * aspectFactor * scale;
       const py = (v - 0.5 - field[1]) * scale;
 
-      const qx = px + 0.22 * Math.sin(py * 5.2 + time * 0.17) + 0.15 * Math.sin(px * 2.4 - py * 3.1 - time * 0.1);
+      const qx =
+        px +
+        0.22 * Math.sin(py * 5.2 + time * 0.17) +
+        0.15 * Math.sin(px * 2.4 - py * 3.1 - time * 0.1);
       const qy = py + 0.19 * Math.sin(px * 3.5 + time * 0.13);
       const radius = Math.hypot(qx * 0.8 + 0.18, qy * 1.1);
-      const folds = 0.5 + 0.5 * Math.sin(radius * 14 - qx * 2.8 + Math.sin(qy * 5) * 1.4 - time * 0.24);
+      const folds =
+        0.5 +
+        0.5 *
+          Math.sin(
+            radius * 14 - qx * 2.8 + Math.sin(qy * 5) * 1.4 - time * 0.24,
+          );
       const cloud = 0.5 + 0.5 * Math.sin(qx * 3.6 - qy * 2.9 + time * 0.09);
-      const light = Math.max(0, Math.min(1, folds * folds * (0.48 + cloud * 0.32) - 0.075 + field[2] * 0.75));
+      const baseLight =
+        folds * folds * (0.48 + cloud * 0.32) - 0.075 + field[2] * 0.75;
+      const light = Math.max(0, Math.min(1, baseLight * intensity));
       const value = Math.round(light * 255);
       const i = (y * width + x) * 4;
 
@@ -200,4 +235,3 @@ export function paintLiquidSource(
     }
   }
 }
-

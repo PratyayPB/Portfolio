@@ -50,7 +50,7 @@ export function Time({ className }: { className?: string }) {
       {/* Local backdrop-blur with radial fade spreading around the time text */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -inset-x-8 -inset-y-5 -z-10 rounded-full bg-background/30 backdrop-blur-md mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_75%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,#000_25%,transparent_75%)]"
+        className="pointer-events-none absolute -inset-x-8 -inset-y-5 -z-10 rounded-full dark:bg-background/30 dark:backdrop-blur-md mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_75%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,#000_25%,transparent_75%)]"
       />
       {time}
     </motion.div>

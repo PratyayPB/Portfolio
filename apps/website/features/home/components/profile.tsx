@@ -20,12 +20,12 @@ export function Profile() {
   };
 
   return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6 ">
-      <ProfileImage className="size-[250px] sm:size-[250px]" />
-      <div className="space-y-2  ">
-        <div className="flex space-x-2">
+    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+      <ProfileImage className="size-[180px] sm:size-[220px] md:size-[250px] mx-auto sm:mx-0 shrink-0" />
+      <div className="space-y-2 text-center sm:text-left">
+        <div className="flex justify-center sm:justify-start">
           <h1
-            className="font-mono font-semibold text-3xl sm:text-3xl"
+            className="font-mono font-semibold text-xl sm:text-2xl md:text-3xl tracking-tight"
             style={{
               fontFamily:
                 "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",

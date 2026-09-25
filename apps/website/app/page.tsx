@@ -16,6 +16,7 @@ import type { Metadata } from "next/types";
 import Skills from "@/features/home/components/skills";
 import { AsciiLayout } from "@/components/ascii-layout";
 import { BorderGlow } from "@repo/design-system/components/ui/border-glow";
+import GreetingPreloader from "@/components/ui/components-preloaders-greetings";
 
 // Force static generation at build time
 export const dynamic = "force-static";
@@ -42,6 +43,7 @@ export default async function Page() {
 
   return (
     <>
+      <GreetingPreloader />
       <JsonLd code={jsonLd} />
       <Info show={["time", "screen"]} />
       <ScrollArea useScrollAreaId className="">
@@ -57,14 +59,20 @@ export default async function Page() {
                 dashLength={10}
                 dashGap={2}
                 specks={15}
+                labels={false}
               />
             </header>
 
-            <div className="border-2 rounded-sm border-[#303030] dark:border-[#e8e8e8] hover:border-black  dark:hover:border-[#ffffff] transition-all duration-300 ">
+            <BorderGlow
+              className="w-full"
+              borderRadius={2}
+              glowRadius={30}
+              glowIntensity={1.2}
+            >
               <Profile />
-              <hr className="mb-8 border-1 border-black dark:border-white px-0 mx-0" />
-              <section className="my-12 px-8 ">
-                <h2 className="mb-3 font-medium text-lg">About</h2>
+              <hr className="mb-8 border-1 border-gray-200 dark:border-white px-0 mx-0" />
+              <section className="my-4 px-4 sm:px-8">
+                <h2 className="mb-3 font-medium text-lg">About me</h2>
                 <div className="space-y-4 text-neutral-800 dark:text-neutral-300/80">
                   <p>
                     I'm a Full Stack Engineer based in India. I'm passionate
@@ -92,25 +100,25 @@ export default async function Page() {
                   </p>
                 </div>
               </section>
-            </div>
+            </BorderGlow>
 
-            <section id="projects" className="mt-12 scroll-mt-16">
+            <section id="projects" className="my-20 scroll-mt-16">
               <Projects />
             </section>
 
-            <section className="mt-12">
+            <section className="my-20">
               <GitHubContribution />
             </section>
 
-            <section id="skills" className="mt-12 scroll-mt-16">
+            <section id="skills" className="my-20 scroll-mt-16">
               <Skills />
             </section>
 
-            <section id="work-experience" className="mt-12 scroll-mt-16">
+            <section id="work-experience" className="my-20 scroll-mt-16">
               <WorkEx />
             </section>
 
-            <section id="education" className="mt-12 scroll-mt-16">
+            <section id="education" className="my-20 scroll-mt-16">
               <Education />
             </section>
 

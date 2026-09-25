@@ -44,8 +44,9 @@ export function generateMetadata(): Metadata {
 // Thanks @shadcn-ui, @tailwindcss
 const darkModeScript = String.raw`
   try {
-    const isLight = localStorage.theme === 'light';
-    if (!isLight) {
+    const theme = localStorage.theme;
+    const isDark = theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    if (isDark) {
       document.documentElement.classList.add('dark');
       document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '${META_THEME_COLORS.dark}');
     } else {
@@ -69,7 +70,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(fontX.variable, fontMono.variable, "dark scroll-smooth")}
+      className={cn(fontX.variable, fontMono.variable, "scroll-smooth")}
       suppressHydrationWarning
     >
       <head>

@@ -12,7 +12,7 @@ export function Providers({
   children: React.ReactNode;
 }) {
   return (
-    <DesignSystemProvider defaultTheme="dark" enableSystem={false}>
+    <DesignSystemProvider defaultTheme="system" enableSystem>
       <JotaiProvider>
           {children}
           <Analytics />

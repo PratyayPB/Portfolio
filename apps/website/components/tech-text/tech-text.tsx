@@ -896,15 +896,21 @@ export const TechText: React.FC<TechTextProps> = ({
     };
   }, [effectiveColor, effectiveAccentColor]);
 
+  const fallbackAspectRatio =
+    text && text.length > 0 ? `${(text.length * 0.55).toFixed(1)} / 1` : "11 / 1";
+
   return (
     <div
       ref={containerRef}
       className={`tech-text ${className}`.trim()}
-      style={style}
+      style={{
+        aspectRatio: fallbackAspectRatio,
+        ...style,
+      }}
       role="img"
       aria-label={text}
     >
-      <canvas ref={canvasRef} className="tech-text-canvas" />
+      <canvas ref={canvasRef} className="tech-text-canvas" style={{ height: "100%" }} />
     </div>
   );
 };

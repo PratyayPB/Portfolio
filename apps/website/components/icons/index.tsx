@@ -9,7 +9,7 @@ import {
   MailIcon,
   PencilIcon,
   TerminalSquareIcon,
-} from 'lucide-react';
+} from "lucide-react";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -95,7 +95,19 @@ export const Icons = {
   calendar: (props: IconProps) => <CalendarIcon {...props} />,
   email: (props: IconProps) => <MailIcon {...props} />,
   signin: (props: IconProps) => <LogIn {...props} />,
-  resume: (props: IconProps) => <FileIcon {...props} />,
+  resume: (props: IconProps) => (
+    <svg viewBox="0 0 43.916 43.916" fill="currentColor" {...props}>
+      <path
+        d="M34.395,0H9.522c-2.762,0-5,2.239-5,5v33.916c0,2.761,2.238,5,5,5h24.871c2.762,0,5-2.239,5-5V5
+		C39.395,2.239,37.154,0,34.395,0z M9.208,16.855c0-1.172,0.951-2.121,2.121-2.121h0.742c-0.791-0.874-1.277-2.03-1.277-3.304
+		c0-2.723,2.209-4.931,4.932-4.931c2.725,0,4.932,2.207,4.932,4.932c0,1.272-0.486,2.429-1.279,3.303h0.709
+		c1.172,0,2.121,0.949,2.121,2.121v3.578c0,1.122-0.875,2.03-1.975,2.106h-9.051c-1.1-0.076-1.975-0.984-1.975-2.106V16.855
+		L9.208,16.855z M32.708,37.416h-21.5c-1.104,0-2-0.896-2-2s0.896-2,2-2h21.5c1.104,0,2,0.896,2,2S33.812,37.416,32.708,37.416z
+		 M32.708,29.916h-21.5c-1.104,0-2-0.896-2-2s0.896-2,2-2h21.5c1.104,0,2,0.896,2,2S33.812,29.916,32.708,29.916z M32.708,22.416
+		h-6.5c-1.104,0-2-0.896-2-2c0-1.104,0.896-2,2-2h6.5c1.104,0,2,0.896,2,2C34.708,21.52,33.812,22.416,32.708,22.416z"
+      />
+    </svg>
+  ),
   bluesky: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -280,17 +292,17 @@ export const Icons = {
 
 export function getIconForLanguageExtension(language: string) {
   switch (language) {
-    case 'json':
+    case "json":
       return <Icons.json />;
-    case 'css':
+    case "css":
       return <Icons.css />;
-    case 'js':
+    case "js":
       return <Icons.js />;
-    case 'ts':
-    case 'typescript':
+    case "ts":
+    case "typescript":
       return <Icons.ts />;
-    case 'jsx':
-    case 'tsx':
+    case "jsx":
+    case "tsx":
       return <Icons.react />;
     default:
       return <FileIcon />;
@@ -299,13 +311,13 @@ export function getIconForLanguageExtension(language: string) {
 
 export function getIconForPackageManager(manager: string) {
   switch (manager) {
-    case 'pnpm':
+    case "pnpm":
       return <Icons.pnpm />;
-    case 'yarn':
+    case "yarn":
       return <Icons.yarn />;
-    case 'npm':
+    case "npm":
       return <Icons.npm />;
-    case 'bun':
+    case "bun":
       return <Icons.bun />;
     default:
       return <TerminalSquareIcon />;

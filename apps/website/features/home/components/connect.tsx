@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { USER } from '@/config/user';
 import {
@@ -10,14 +11,37 @@ import {
 import { BorderGlow } from '@repo/design-system/components/ui/border-glow';
 import * as React from 'react';
 
+type SocialLink = {
+  label: string;
+  url?: string;
+  icon?: (props: { className?: string }) => React.ReactNode;
+};
+
 export function Connect() {
-  const socialLinks = [
+  const socialLinks: SocialLink[] = [
     { label: 'Github', url: USER.social.github },
     { label: 'Twitter', url: USER.social.twitter },
     { label: 'LinkedIn', url: USER.social.linkedin },
     { label: 'Instagram', url: USER.social.instagram },
-    { label: 'Resume pdf', url: USER.social.resume },
-  ].filter((item): item is { label: string; url: string } => Boolean(item.url));
+    {
+      label: 'Resume pdf',
+      url: USER.social.resume,
+      icon: ({ className }: { className?: string }) => (
+        <Image
+          src="/assets/curriculum-vitae-svgrepo-com.svg"
+          alt="Resume icon"
+          width={14}
+          height={14}
+          unoptimized
+          className={`size-3.5 shrink-0 object-contain dark:invert ${className ?? ''}`}
+        />
+      ),
+    },
+  ];
+
+  const availableLinks = socialLinks.filter(
+    (item): item is SocialLink & { url: string } => Boolean(item.url)
+  );
 
   return (
     <Panel id="connect" className="space-y-4">
@@ -37,7 +61,7 @@ export function Connect() {
         </p>
 
         <div className="flex flex-wrap gap-2.5">
-          {socialLinks.map((link) => (
+          {availableLinks.map((link) => (
             <a
               key={link.label}
               href={link.url}
@@ -53,6 +77,7 @@ export function Connect() {
                 className="rounded-full shadow-xs"
               >
                 <div className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-medium text-secondary-foreground sm:text-sm">
+                  {link.icon && <link.icon className="size-3.5 text-muted-foreground" />}
                   <span>{link.label}</span>
                   <ArrowUpRight className="size-3.5 text-muted-foreground" />
                 </div>
