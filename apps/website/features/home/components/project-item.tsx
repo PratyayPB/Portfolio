@@ -7,6 +7,7 @@ import type { Project } from '@/config/projects';
 import { UTM_PARAMS } from '@/config/site';
 import { addQueryParams } from '@/lib/url';
 import { cn } from '@/lib/utils';
+import { BorderGlow } from '@repo/design-system/components/ui/border-glow';
 import {
   CollapsibleChevronsIcon,
   CollapsibleContent,
@@ -34,15 +35,17 @@ export function ProjectItem({
   const isExpanded = project.isExpanded ?? false;
 
   return (
-    <CollapsibleWithContext defaultOpen={isExpanded} asChild>
-      <div className={cn(className, 'group/item')}>
-        <div
-          className={cn(
-            'flex items-center border-2 border-accent',
-            isFirst && 'rounded-t-xl',
-            isLast && 'group-data-[state=closed]/item:rounded-b-xl'
-          )}
+    <CollapsibleWithContext defaultOpen={isExpanded}>
+      <div className={cn('group/item mb-3', className)}>
+        <BorderGlow
+          className="w-full"
+          borderRadius={16}
+          glowRadius={30}
+          glowIntensity={1.2}
         >
+          <div className="flex items-center">
+
+
           {project.logo ? (
             <Image
               src={project.logo}
@@ -125,13 +128,7 @@ export function ProjectItem({
         </div>
 
         <CollapsibleContent className="group/content overflow-hidden duration-300 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
-          <div
-            className={cn(
-              'border-x-2 border-dashed border-edge border-accent',
-              isLast &&
-                'group-data-[state=open]/item:border-b-2 group-data-[state=open]/item:rounded-b-xl'
-            )}
-          >
+          <div className="border-t border-border/40">
             <div className="space-y-4 p-4 duration-300 group-data-[state=closed]/content:animate-fade-out group-data-[state=open]/content:animate-fade-in">
               {project.description && (
                 <ProseMono>
@@ -151,7 +148,9 @@ export function ProjectItem({
             </div>
           </div>
         </CollapsibleContent>
+        </BorderGlow>
       </div>
     </CollapsibleWithContext>
   );
 }
+

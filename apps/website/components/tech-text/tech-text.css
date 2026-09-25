@@ -1,0 +1,11 @@
+.tech-text {
+  position: relative;
+  width: 100%;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.tech-text-canvas {
+  display: block;
+  width: 100%;
+}

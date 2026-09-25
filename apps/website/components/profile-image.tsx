@@ -1,24 +1,56 @@
-import { USER } from '@/config/user';
-import Image from 'next/image';
+import { USER } from "@/config/user";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
-export const SelfImage = () => (
-  <Image
-    src={USER.image.profile}
-    width={64}
-    height={64}
-    priority={true}
-    className="rounded-full bg-white"
-    alt={`A photo of ${USER.name}`}
-  />
-);
+export const SelfImage = () => {
+  const lightImg = USER.image.profileLight ?? USER.image.profile;
+  const darkImg = USER.image.profileDark ?? USER.image.profile;
 
-export const ProfileImage = () => {
   return (
-    <div className="relative mx-[2px] my-[3px] size-[128px] sm:size-[160px]">
+    <>
+      <Image
+        src={lightImg}
+        width={64}
+        height={64}
+        priority={true}
+        className="rounded-full bg-white dark:hidden"
+        alt={`A photo of ${USER.name}`}
+      />
+      <Image
+        src={darkImg}
+        width={64}
+        height={64}
+        priority={true}
+        className="hidden rounded-full bg-white dark:block"
+        alt={`A photo of ${USER.name}`}
+      />
+    </>
+  );
+};
+
+export const ProfileImage = ({ className }: { className?: string }) => {
+  const lightImg = USER.image.profileLight ?? USER.image.profile;
+  const darkImg = USER.image.profileDark ?? USER.image.profile;
+
+  return (
+    <div
+      className={cn(
+        "relative size-[160px] sm:size-[160px] border-r-1 border-black dark:border-white",
+        className,
+      )}
+    >
+      {/* Light mode profile image */}
       <img
-        src={USER.image.profile}
+        src={lightImg}
         fetchPriority="high"
-        className="h-full w-full select-none rounded-full bg-secondary ring-1 ring-border ring-offset-2 ring-offset-primary"
+        className="h-full w-full select-none bg-secondary object-cover dark:hidden"
+        alt={`Profile of ${USER.name}`}
+      />
+      {/* Dark mode profile image */}
+      <img
+        src={darkImg}
+        fetchPriority="high"
+        className="hidden h-full w-full select-none bg-secondary object-cover dark:block"
         alt={`Profile of ${USER.name}`}
       />
     </div>

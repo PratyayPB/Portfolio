@@ -1,21 +1,22 @@
-import { createOgImage } from '@/lib/createOgImage';
-import { fontMono, fontX } from '@/lib/fonts';
-import { cn } from '@/lib/utils';
-import type { Metadata, Viewport } from 'next';
-import type React from 'react';
+import { createOgImage } from "@/lib/createOgImage";
+import { fontMono, fontX } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
+import type { Metadata, Viewport } from "next";
+import type React from "react";
 
-import '@repo/design-system/styles/globals.css';
+import "@repo/design-system/styles/globals.css";
 
-import DevTools from '@/components/dev-tools';
-import Navigation from '@/components/navigation';
-import { META_THEME_COLORS } from '@/config/site';
-import { USER } from '@/config/user';
-import { Providers } from '@/lib/providers';
-import Script from 'next/script';
+import { AsciiLayout } from "@/components/ascii-layout";
+import DevTools from "@/components/dev-tools";
+import Navigation from "@/components/navigation";
+import { META_THEME_COLORS } from "@/config/site";
+import { USER } from "@/config/user";
+import { Providers } from "@/lib/providers";
+import Script from "next/script";
 
 export const viewport: Viewport = {
-  themeColor: META_THEME_COLORS.light,
-  width: 'device-width',
+  themeColor: META_THEME_COLORS.dark,
+  width: "device-width",
   initialScale: 1,
 };
 
@@ -26,7 +27,7 @@ export function generateMetadata(): Metadata {
     openGraph: {
       title: USER.name,
       siteName: USER.name,
-      type: 'website',
+      type: "website",
       url: `https://${USER.domain}`,
       images: [
         {
@@ -37,15 +38,19 @@ export function generateMetadata(): Metadata {
         },
       ],
     },
-   
   };
 }
 
 // Thanks @shadcn-ui, @tailwindcss
 const darkModeScript = String.raw`
   try {
-    if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
+    const isLight = localStorage.theme === 'light';
+    if (!isLight) {
+      document.documentElement.classList.add('dark');
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '${META_THEME_COLORS.dark}');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '${META_THEME_COLORS.light}');
     }
   } catch (_) {}
 
@@ -64,7 +69,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(fontX.variable, fontMono.variable, 'scroll-smooth')}
+      className={cn(fontX.variable, fontMono.variable, "dark scroll-smooth")}
       suppressHydrationWarning
     >
       <head>
@@ -81,15 +86,12 @@ export default async function RootLayout({
       <body suppressHydrationWarning>
         <Providers>
           <Navigation />
-          <main
-            id="main-content"
-            vaul-drawer-wrapper=""
-            className="relative min-h-screen w-full bg-background"
-          >
-            {children}
-          </main>
+
+          {children}
+
           <DevTools />
         </Providers>
+
         <Script
           defer
           strategy="lazyOnload"

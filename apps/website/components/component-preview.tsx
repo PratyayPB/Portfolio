@@ -12,10 +12,11 @@ import { cn } from '@/lib/utils';
 import { Index } from '@/registry/__index__';
 
 import { CodeCollapsibleWrapper } from './code-collapsible-wrapper';
-import { OpenInV0Button } from './open-in-v0';
+import { BorderGlow } from '@repo/design-system/components/ui/border-glow';
 import { Button } from '@repo/design-system/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
 import { Code as CodeInline } from '@repo/design-system/components/ui/typography';
+
 
 export function ComponentPreview({
   className,
@@ -61,14 +62,9 @@ export function ComponentPreview({
         </TabsList>
 
         <TabsContent value="preview">
-          <div className="relative rounded-lg border border-edge bg-zinc-950/0.75 dark:bg-white/0.75">
-            {(canReplay || openInV0Url) && (
+          <BorderGlow borderRadius={12} className="w-full">
+            {(canReplay) && (
               <div className="flex justify-end gap-2 p-4">
-                {openInV0Url && (
-                  <OpenInV0Button
-                    url={`https://bucharitesh.in/r/${name}.json`}
-                  />
-                )}
                 {canReplay && (
                   // <SimpleTooltip content="Replay">
                   <Button
@@ -84,7 +80,7 @@ export function ComponentPreview({
 
             <div
               key={replay}
-              className="relative mx-auto flex size-full items-center justify-center"
+              className="relative mx-auto flex size-full items-center justify-center p-4"
             >
               <React.Suspense
                 fallback={
@@ -96,8 +92,9 @@ export function ComponentPreview({
                 <PreviewContent type="component">{Preview}</PreviewContent>
               </React.Suspense>
             </div>
-          </div>
+          </BorderGlow>
         </TabsContent>
+
 
         <TabsContent value="code" className="[&>figure]:m-0">
           {codeCollapsible ? (

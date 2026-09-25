@@ -10,7 +10,9 @@ import {
   useContext,
   useRef,
 } from 'react';
+import { BorderGlow } from '@repo/design-system/components/ui/border-glow';
 import { TocThumb } from './toc-thumb';
+
 
 const TOCContext = createContext<TOCItemType[]>([]);
 
@@ -57,10 +59,13 @@ export function TOCItems({ className, ...props }: ComponentProps<'div'>) {
 
   if (items.length === 0)
     return (
-      <div className="rounded-lg border bg-card p-3 text-muted-foreground text-xs">
-        No Headings
-      </div>
+      <BorderGlow borderRadius={8} className="w-full">
+        <div className="p-3 text-muted-foreground text-xs">
+          No Headings
+        </div>
+      </BorderGlow>
     );
+
 
   return (
     <>

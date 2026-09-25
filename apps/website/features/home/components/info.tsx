@@ -40,17 +40,24 @@ export function Time({ className }: { className?: string }) {
   return (
     <motion.div
       className={cn(
-        'fixed top-4 left-4 z-50 font-x text-gray-600 text-xs tracking-wider dark:text-gray-300',
+        'fixed top-4 left-4 z-50 flex items-center font-x text-gray-600 text-xs tracking-wider dark:text-gray-300',
         className
       )}
       initial={fadeIn.initial}
       animate={fadeIn.animate}
       transition={fadeIn.transition}
     >
+      {/* Local backdrop-blur with radial fade spreading around the time text */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-x-8 -inset-y-5 -z-10 rounded-full bg-background/30 backdrop-blur-md mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_75%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,#000_25%,transparent_75%)]"
+      />
       {time}
     </motion.div>
   );
 }
+
+
 
 export function ScreenSize({ className }: { className?: string }) {
   const { width, height } = useWindowSize();

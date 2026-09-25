@@ -1,0 +1,69 @@
+/* ==========================================================================
+   ASCII Side-Panel Layout
+   ========================================================================== */
+
+.ascii-layout {
+  width: 100%;
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  overflow: hidden;
+  position: relative;
+  padding-top: 0;
+}
+
+.ascii-side {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  min-height: 100%;
+  background-color: var(--background, #ffffff);
+}
+
+.ascii-center {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  background-color: var(--background, #ffffff);
+  /* border-left: 1px solid var(--border, rgb(0 0 0 / 10%));
+  border-right: 1px solid var(--border, rgb(0 0 0 / 10%)); */
+  box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.ascii-center::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Tablet (1024px and below) */
+@media (max-width: 1024px) {
+  .ascii-layout {
+    grid-template-columns: 15% 70% 15%;
+  }
+}
+
+/* Mobile (768px and below) */
+@media (max-width: 768px) {
+  .ascii-layout {
+    grid-template-columns: 0 100% 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ascii-side {
+    display: none;
+  }
+
+  .ascii-center {
+    width: 100%;
+    border-left: none;
+    border-right: none;
+  }
+}

@@ -31,5 +31,6 @@
     ".next/types/**/*.ts",
     "./scripts/**/*.ts"
   ],
-  "exclude": ["node_modules", "archive"]
+  "exclude": ["node_modules", "archive", "context"]
 }
+
