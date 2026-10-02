@@ -1,0 +1,76 @@
+import { ChevronDownIcon } from "lucide-react";
+import { Slot as SlotPrimitive } from "radix-ui";
+import React from "react";
+
+import { Button } from "@repo/design-system/components/ui/button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@repo/design-system/components/ui/collapsible";
+
+const Slot = SlotPrimitive.Slot;
+
+export function CollapsibleList<T>({
+  items,
+  max = 3,
+  keyExtractor,
+  renderItem,
+}: {
+  items: T[];
+  max?: number;
+  keyExtractor?: (item: T) => string;
+  renderItem: (item: T, isFirst: boolean, isLast: boolean) => React.ReactNode;
+}) {
+  const totalItems = items.length;
+
+  return (
+    <Collapsible>
+      {items.slice(0, max).map((item, index) => (
+        <Slot
+          key={typeof keyExtractor === "function" ? keyExtractor(item) : index}
+          className=""
+        >
+          {renderItem(item, index === 0, index === totalItems - 1)}
+        </Slot>
+      ))}
+
+      <CollapsibleContent>
+        {items.slice(max).map((item, index) => (
+          <Slot
+            key={
+              typeof keyExtractor === "function"
+                ? keyExtractor(item)
+                : max + index
+            }
+            className=""
+          >
+            {renderItem(item, false, max + index === totalItems - 1)}
+          </Slot>
+        ))}
+      </CollapsibleContent>
+
+      {items.length > max && (
+        <div className="flex h-14 items-center justify-center pt-2">
+          <CollapsibleTrigger asChild>
+            <Button
+              className="group/collapsible-trigger flex items-center gap-2 px-5 py-2 transition-all duration-300 ease-out hover:scale-[1.03] active:scale-[0.97] hover:shadow-md cursor-pointer"
+              variant="default"
+            >
+              <span className="group-data-[state=closed]/collapsible-trigger:inline group-data-[state=open]/collapsible-trigger:hidden transition-all duration-200">
+                Show More
+              </span>
+              <span className="group-data-[state=open]/collapsible-trigger:inline group-data-[state=closed]/collapsible-trigger:hidden transition-all duration-200">
+                Show Less
+              </span>
+              <ChevronDownIcon
+                className="size-4 transition-transform duration-300 ease-in-out group-data-[state=open]/collapsible-trigger:rotate-180"
+                aria-hidden
+              />
+            </Button>
+          </CollapsibleTrigger>
+        </div>
+      )}
+    </Collapsible>
+  );
+}

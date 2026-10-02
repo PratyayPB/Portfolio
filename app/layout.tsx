@@ -1,0 +1,92 @@
+import { fontMono, fontX } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
+import type { Metadata, Viewport } from "next";
+import type React from "react";
+
+import "@repo/design-system/styles/globals.css";
+
+import { AsciiLayout } from "@/components/ascii-layout";
+import DevTools from "@/components/dev-tools";
+import Navigation from "@/components/navigation";
+import { META_THEME_COLORS } from "@/config/site";
+import { USER } from "@/config/user";
+import { Providers } from "@/lib/providers";
+import Script from "next/script";
+
+export const viewport: Viewport = {
+  themeColor: META_THEME_COLORS.dark,
+  width: "device-width",
+  initialScale: 1,
+};
+
+export function generateMetadata(): Metadata {
+  return {
+    title: { template: `%s`, default: `${USER.name}` },
+    metadataBase: new URL(`https://${USER.domain}`),
+    openGraph: {
+      title: USER.name,
+      siteName: USER.name,
+      type: "website",
+      url: `https://${USER.domain}`,
+    },
+    icons: {
+      icon: "/favicon.ico",
+    },
+  };
+}
+
+// Thanks @shadcn-ui, @tailwindcss
+const darkModeScript = String.raw`
+  try {
+    const theme = localStorage.theme;
+    const isDark = theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '${META_THEME_COLORS.dark}');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '${META_THEME_COLORS.light}');
+    }
+  } catch (_) {}
+
+  try {
+    if (/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+      document.documentElement.classList.add('os-macos')
+    }
+  } catch (_) {}
+`;
+
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html
+      lang="en"
+      className={cn(fontX.variable, fontMono.variable, "scroll-smooth")}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{ __html: darkModeScript }}
+        />
+        {/*
+          Thanks @tailwindcss. We inject the script via the `<Script/>` tag again,
+          since we found the regular `<script>` tag to not execute when rendering a not-found page.
+         */}
+        <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
+      </head>
+      <body suppressHydrationWarning>
+        <Providers>
+          <Navigation />
+
+          {children}
+
+          <DevTools />
+        </Providers>
+      </body>
+    </html>
+  );
+}
