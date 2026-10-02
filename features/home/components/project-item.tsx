@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from "react";
 import { BoxIcon, InfinityIcon, LinkIcon } from "lucide-react";
 import Image from "next/image";
 
@@ -31,6 +32,7 @@ export function ProjectItem({
   isFirst?: boolean;
   isLast?: boolean;
 }) {
+  const [imgError, setImgError] = useState(false);
   const { start, end } = project.period;
   const isOngoing = !end;
   const isSinglePeriod = end === start;
@@ -46,16 +48,17 @@ export function ProjectItem({
           glowIntensity={1.2}
         >
           <div className="flex items-center">
-            {project.logo ? (
+            {project.logo && !imgError ? (
               <Image
                 src={project.logo}
                 alt={project.title}
                 width={32}
                 height={32}
                 quality={100}
-                className="mx-4 flex size-6 shrink-0 select-none"
+                className="mx-4 flex size-6 shrink-0 select-none object-contain rounded-sm"
                 unoptimized
                 aria-hidden="true"
+                onError={() => setImgError(true)}
               />
             ) : (
               <div

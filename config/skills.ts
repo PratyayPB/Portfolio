@@ -150,22 +150,22 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       {
         name: "ChatGPT",
-        icon: "/assets/stack/ai&llm-integration/chatgpt.svg",
+        icon: "/assets/stack/ai-llm-integration/chatgpt.svg",
         invertCategory: "none",
       },
       {
         name: "Claude AI",
-        icon: "/assets/stack/ai&llm-integration/claude-ai.svg",
+        icon: "/assets/stack/ai-llm-integration/claude-ai.svg",
         invertCategory: "none",
       },
       {
         name: "Google Gemini",
-        icon: "/assets/stack/ai&llm-integration/gemini.svg",
+        icon: "/assets/stack/ai-llm-integration/gemini.svg",
         invertCategory: "none",
       },
       {
         name: "GitHub Copilot",
-        icon: "/assets/stack/ai&llm-integration/github-copilot.svg",
+        icon: "/assets/stack/ai-llm-integration/github-copilot.svg",
         invertCategory: "dark",
       },
     ],
@@ -177,42 +177,42 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       {
         name: "Git",
-        icon: "/assets/stack/tools&testing/git.svg",
+        icon: "/assets/stack/tools-testing/git.svg",
         invertCategory: "none",
       },
       {
         name: "GitHub",
-        icon: "/assets/stack/tools&testing/github-dark.svg",
+        icon: "/assets/stack/tools-testing/github-dark.svg",
         invertCategory: "dark",
       },
       {
         name: "Vercel",
-        icon: "/assets/stack/tools&testing/vercel.svg",
+        icon: "/assets/stack/tools-testing/vercel.svg",
         invertCategory: "dark",
       },
       {
         name: "Postman",
-        icon: "/assets/stack/tools&testing/postman.svg",
+        icon: "/assets/stack/tools-testing/postman.svg",
         invertCategory: "none",
       },
       {
         name: "Cloudflare",
-        icon: "/assets/stack/tools&testing/cloudflare.svg",
+        icon: "/assets/stack/tools-testing/cloudflare.svg",
         invertCategory: "none",
       },
       {
         name: "Resend",
-        icon: "/assets/stack/tools&testing/resend.svg",
+        icon: "/assets/stack/tools-testing/resend.svg",
         invertCategory: "dark",
       },
       {
         name: "Notion",
-        icon: "/assets/stack/tools&testing/notion.svg",
+        icon: "/assets/stack/tools-testing/notion.svg",
         invertCategory: "dark",
       },
       {
         name: "npm",
-        icon: "/assets/stack/tools&testing/npm.svg",
+        icon: "/assets/stack/tools-testing/npm.svg",
         invertCategory: "none",
       },
     ],

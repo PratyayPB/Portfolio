@@ -30,7 +30,7 @@ export const PROJECTS: Project[] = [
   {
     id: "ghost-ai",
     title: "Ghost AI",
-    logo: "/assets/project-logos/ghost-ai.ico",
+    logo: "/assets/project-logos/ghost-ai.png",
     period: {
       start: "06.2026",
       end: "07.2026",
@@ -92,7 +92,7 @@ Features include:
   {
     id: "gocart",
     title: "GoCart",
-    logo: "/assets/project-logos/gocart.ico",
+    logo: "/assets/project-logos/gocart.png",
     period: {
       start: "12.2025",
       end: "02.2026",
@@ -172,7 +172,7 @@ Features include:
   {
     id: "gemini-clone",
     title: "Gemini Clone",
-    logo: "/assets/project-logos/Google-gemini-icon.svg.webp",
+    logo: "/assets/project-logos/google-gemini.png",
     period: {
       start: "04.2025",
       end: "05.2025",
