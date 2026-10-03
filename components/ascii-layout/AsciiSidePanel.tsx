@@ -46,6 +46,7 @@ export function AsciiSidePanel({
     const sourceCtx = source.getContext("2d", { willReadFrequently: true });
     if (!sourceCtx) return;
 
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     let width = 1;
     let height = 1;
@@ -70,7 +71,8 @@ export function AsciiSidePanel({
       hoverStrength: 0,
     };
 
-    const isResting = () => reduced.matches || document.hidden || !visible;
+    const isResting = () =>
+      mobileQuery.matches || reduced.matches || document.hidden || !visible;
 
     const tick = (now: number) => {
       raf = 0;
@@ -116,13 +118,18 @@ export function AsciiSidePanel({
     };
 
     const wake = () => {
-      if (!raf && visible && !disposed && !document.hidden) {
+      if (!raf && visible && !disposed && !document.hidden && !mobileQuery.matches && !reduced.matches) {
         raf = requestAnimationFrame(tick);
       }
     };
 
     const handleResize = () => {
       if (!host || !target) return;
+      if (mobileQuery.matches) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+        return;
+      }
       const rect = host.getBoundingClientRect();
       width = Math.max(1, Math.round(rect.width));
       height = Math.max(1, Math.round(rect.height));
@@ -195,11 +202,21 @@ export function AsciiSidePanel({
       }
     };
 
+    const handleMobileChange = () => {
+      if (mobileQuery.matches) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      } else {
+        handleResize();
+      }
+    };
+
     host.addEventListener("pointermove", handlePointerMove, { passive: true });
     host.addEventListener("pointerleave", handlePointerLeave, {
       passive: true,
     });
     document.addEventListener("visibilitychange", handleVisibilityChange);
+    mobileQuery.addEventListener("change", handleMobileChange);
 
     handleResize();
 
@@ -211,6 +228,7 @@ export function AsciiSidePanel({
       host.removeEventListener("pointermove", handlePointerMove);
       host.removeEventListener("pointerleave", handlePointerLeave);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+      mobileQuery.removeEventListener("change", handleMobileChange);
     };
   }, [side, fontSize, effectiveGlyphColor, patternScale, isDark]);
 

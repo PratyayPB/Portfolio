@@ -181,6 +181,10 @@ export const BorderGlow = React.forwardRef<HTMLDivElement, BorderGlowProps>(
 
     const handlePointerMove = React.useCallback(
       (e: React.PointerEvent<HTMLDivElement>) => {
+        if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+          onPointerMove?.(e);
+          return;
+        }
         const card = cardRef.current;
         if (!card) return;
 
@@ -188,8 +192,24 @@ export const BorderGlow = React.forwardRef<HTMLDivElement, BorderGlowProps>(
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        const edge = getEdgeProximity(card, x, y);
-        const angle = getCursorAngle(card, x, y);
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const dx = x - cx;
+        const dy = y - cy;
+
+        let kx = Infinity;
+        let ky = Infinity;
+        if (dx !== 0) kx = cx / Math.abs(dx);
+        if (dy !== 0) ky = cy / Math.abs(dy);
+        const edge = Math.min(Math.max(1 / Math.min(kx, ky), 0), 1);
+
+        let angle = 0;
+        if (dx !== 0 || dy !== 0) {
+          const radians = Math.atan2(dy, dx);
+          let degrees = radians * (180 / Math.PI) + 90;
+          if (degrees < 0) degrees += 360;
+          angle = degrees;
+        }
 
         // Keep a minimum proximity of 0.6 on hover so wide/tall cards glow vibrantly across their entire area
         const effectiveEdge = Math.max(edge, 0.6);
@@ -202,11 +222,15 @@ export const BorderGlow = React.forwardRef<HTMLDivElement, BorderGlowProps>(
 
         onPointerMove?.(e);
       },
-      [getEdgeProximity, getCursorAngle, onPointerMove]
+      [onPointerMove]
     );
 
     const handlePointerEnter = React.useCallback(
       (e: React.PointerEvent<HTMLDivElement>) => {
+        if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+          onPointerEnter?.(e);
+          return;
+        }
         const card = cardRef.current;
         if (card) {
           card.style.setProperty('--edge-proximity', '80');
@@ -217,6 +241,7 @@ export const BorderGlow = React.forwardRef<HTMLDivElement, BorderGlowProps>(
     );
 
     React.useEffect(() => {
+      if (typeof window !== 'undefined' && window.innerWidth <= 768) return;
       if (!animated || !cardRef.current) return;
       const card = cardRef.current;
       const angleStart = 110;

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { BoxIcon, InfinityIcon, LinkIcon } from "lucide-react";
+import { BoxIcon, ChevronDownIcon, InfinityIcon, LinkIcon } from "lucide-react";
 import Image from "next/image";
 
 import { Icons } from "@/components/icons";
@@ -12,7 +12,6 @@ import { addQueryParams } from "@/lib/url";
 import { cn } from "@/lib/utils";
 import { BorderGlow } from "@repo/design-system/components/ui/border-glow";
 import {
-  CollapsibleChevronsIcon,
   CollapsibleContent,
   CollapsibleTrigger,
   CollapsibleWithContext,
@@ -70,7 +69,7 @@ export function ProjectItem({
             )}
 
             <div className="flex-1">
-              <CollapsibleTrigger className="flex w-full items-center gap-2 p-4 pr-3 text-left cursor-pointer select-none transition-all duration-200">
+              <CollapsibleTrigger className="group/trigger flex w-full items-center gap-2 p-4 pr-3 text-left cursor-pointer select-none transition-all duration-200">
                 <div className="flex-1">
                   <h3 className="mb-1 leading-snug font-medium text-balance">
                     {project.title}
@@ -123,10 +122,10 @@ export function ProjectItem({
                   </a>
                 </TooltipWrapper>
                 <div
-                  className="shrink-0 text-muted-foreground transition-colors duration-200 group-hover/item:text-foreground [&_svg]:size-4"
+                  className="shrink-0 text-muted-foreground transition-transform duration-300 ease-in-out group-data-[state=open]/trigger:rotate-180"
                   aria-hidden
                 >
-                  <CollapsibleChevronsIcon />
+                  <ChevronDownIcon className="size-4" />
                 </div>
               </CollapsibleTrigger>
             </div>

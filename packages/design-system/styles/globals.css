@@ -111,11 +111,15 @@
 }
 
 .animate-collapsible-down {
-  animation: collapsible-down 320ms cubic-bezier(0.25, 1, 0.5, 1);
+  animation: collapsible-down 240ms cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: height, opacity;
+  contain: paint;
 }
 
 .animate-collapsible-up {
-  animation: collapsible-up 240ms cubic-bezier(0.25, 1, 0.5, 1);
+  animation: collapsible-up 180ms cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: height, opacity;
+  contain: paint;
 }
 
 .animate-fade-in {
@@ -533,6 +537,11 @@
 @utility bg-grid {
   @apply bg-background;
   /* @apply bg-[repeating-linear-gradient(45deg,_transparent,_transparent_2px,_var(--color-border)_4px,_var(--color-border)_1px)]; */
+}
+
+@utility content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
 }
 
 /* Animations moved from Tailwind config */
@@ -969,6 +978,15 @@ body [data-pattern="stripes"] {
 .border-glow-card:not(:hover):not(.sweep-active) > .edge-light {
   opacity: 0;
   transition: opacity 0.75s ease-in-out;
+}
+
+/* Disable border glow property entirely on mobile devices (<= 768px) */
+@media (max-width: 768px) {
+  .border-glow-card::before,
+  .border-glow-card::after,
+  .border-glow-card > .edge-light {
+    display: none !important;
+  }
 }
 
 /* colored mesh-gradient border */

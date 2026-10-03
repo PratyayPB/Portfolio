@@ -95,23 +95,23 @@ export default async function Page() {
               </section>
             </BorderGlow>
 
-            <section id="projects" className="my-20 scroll-mt-16">
+            <section id="projects" className="my-20 scroll-mt-16 content-visibility-auto">
               <Projects />
             </section>
 
-            <section className="my-20">
+            <section className="my-20 content-visibility-auto">
               <GitHubContribution />
             </section>
 
-            <section id="skills" className="my-20 scroll-mt-16">
+            <section id="skills" className="my-20 scroll-mt-16 content-visibility-auto">
               <Skills />
             </section>
 
-            <section id="work-experience" className="my-20 scroll-mt-16">
+            <section id="work-experience" className="my-20 scroll-mt-16 content-visibility-auto">
               <WorkEx />
             </section>
 
-            <section id="education" className="my-20 scroll-mt-16">
+            <section id="education" className="my-20 scroll-mt-16 content-visibility-auto">
               <Education />
             </section>
           </div>
