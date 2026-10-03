@@ -82,10 +82,10 @@ export default async function Page() {
 
                   <p>
                     I leverage Agentic AI to accelerate my development workflow.
-                    By integrating AI-driven tools and custom agents into my
-                    daily routine, I streamline repetitive tasks, rapidly
-                    prototype new features, and maintain a sharp focus on
-                    writing high-performance, production-ready code.
+                    By integrating AI-driven tools and agents into my daily
+                    routine, I streamline repetitive tasks, rapidly prototype
+                    new features, and maintain a sharp focus on writing
+                    high-performance, production-ready code.
                   </p>
                   <p>
                     Beyond coding, I enjoy traveling and photography, which
