@@ -121,7 +121,7 @@ Features include:
       end: "10.2025",
     },
     link: "https://get-me-chai-one.vercel.app/",
-    github: "https://github.com/PratyayPB/GetMeChai",
+    github: "https://github.com/PratyayPB/get-me-chai",
     skills: [
       "Next.js",
       "React",
@@ -177,7 +177,7 @@ Features include:
       start: "04.2025",
       end: "05.2025",
     },
-    link: "https://gemini-clone-dun-nine.vercel.app/",
+    link: "https://gemini-clone-pq8w-git-vercel-deploy-pratyays-projects-1a462406.vercel.app/",
     github: "https://github.com/PratyayPB/GeminiClone",
     skills: [
       "React",
