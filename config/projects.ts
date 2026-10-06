@@ -115,7 +115,7 @@ Features include:
   {
     id: "get-me-chai",
     title: "Get Me Chai",
-    logo: "/assets/project-logos/tea.gif",
+    logo: "/assets/project-logos/tea.webp",
     period: {
       start: "9.2025",
       end: "10.2025",
@@ -177,8 +177,8 @@ Features include:
       start: "04.2025",
       end: "05.2025",
     },
-    link: "https://gemini-clone-demo.vercel.app/",
-    github: "https://github.com/PratyayPB/Gemini-Clone",
+    link: "https://gemini-clone-dun-nine.vercel.app/",
+    github: "https://github.com/PratyayPB/GeminiClone",
     skills: [
       "React",
       "Tailwind CSS",
