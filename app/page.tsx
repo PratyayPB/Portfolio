@@ -76,8 +76,8 @@ export default async function Page() {
                   <p>
                     Over the course of my learning journey, I've developed
                     multiple full-stack projects while gaining practical
-                    experience at multiple organizations, where I contributed to
-                    modern web interfaces and production-ready features.
+                    experience at CodeMate Club, where I contributed to modern
+                    web interfaces and production-ready features.
                   </p>
 
                   <p>
@@ -95,7 +95,10 @@ export default async function Page() {
               </section>
             </BorderGlow>
 
-            <section id="projects" className="my-20 scroll-mt-16 content-visibility-auto">
+            <section
+              id="projects"
+              className="my-20 scroll-mt-16 content-visibility-auto"
+            >
               <Projects />
             </section>
 
@@ -103,15 +106,24 @@ export default async function Page() {
               <GitHubContribution />
             </section>
 
-            <section id="skills" className="my-20 scroll-mt-16 content-visibility-auto">
+            <section
+              id="skills"
+              className="my-20 scroll-mt-16 content-visibility-auto"
+            >
               <Skills />
             </section>
 
-            <section id="work-experience" className="my-20 scroll-mt-16 content-visibility-auto">
+            <section
+              id="work-experience"
+              className="my-20 scroll-mt-16 content-visibility-auto"
+            >
               <WorkEx />
             </section>
 
-            <section id="education" className="my-20 scroll-mt-16 content-visibility-auto">
+            <section
+              id="education"
+              className="my-20 scroll-mt-16 content-visibility-auto"
+            >
               <Education />
             </section>
           </div>
