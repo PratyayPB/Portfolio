@@ -54,7 +54,7 @@ export const experiences: Experience[] = [
         employmentType: "Flexible",
         employmentPeriod: {
           start: "March 2026",
-          end: "Present",
+          end: "November 2026",
         },
         points: [
           "Migrated the platform from a client-side React SPA to a full-stack serverless Next.js (App Router) application, and built the backend using PostgreSQL, Prisma ORM, and server-side data handling. This was done to keep the frontend and backend in one codebase, improve SEO, and reduce redundant client-side data fetching, resulting in a more maintainable and scalable application.",
