@@ -28,6 +28,40 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    id: "elev8",
+    title: "Elev8",
+    period: {
+      start: "08.2026",
+      end: "11.2026",
+    },
+    link: "https://elev8-prod.vercel.app/",
+    github: "https://github.com/PratyayPB/elev8-prod",
+    skills: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Google Gemini",
+      "Trigger.dev",
+      "Prisma",
+      "PostgreSQL",
+      "Upstash Redis",
+      "React Flow",
+      "Clerk",
+      "Vercel Blob",
+      "Tailwind CSS",
+    ],
+    description: `Full-stack AI career guidance platform offering holistic career assessments, dynamic visual roadmaps, 16-theme ATS resume optimization and resume scoring, and interactive mock interview simulations.
+
+Features include:
+- Career assessment engine evaluating skills, background, and goals to generate career compatibility scores and actionable skill-gap insights
+- Dynamic, interactive node-based learning roadmap generator powered by React Flow and Dagre with milestone progress tracking and catalog discovery
+- High-fidelity 16-theme ATS resume builder with real-time live preview, AI content tailoring, and headless Chrome PDF export
+- In-depth ATS resume scoring engine featuring competency radar charts, section-by-section scoring, and actionable recruiter feedback
+- Realistic mock interview simulation supporting text and audio recordings with pacing telemetry, performance charts, and competency diagnostics
+- Resilient background task orchestration and automated retry handling for long-running AI workflows powered by Trigger.dev v3
+- Performance optimization with Upstash Redis artifact caching, atomic distributed mutex locks (SETNX), and direct client-to-storage Vercel Blob uploads`,
+  },
+  {
     id: "ghost-ai",
     title: "Ghost AI",
     logo: "/assets/project-logos/ghost-ai.png",
